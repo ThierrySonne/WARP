@@ -1,4 +1,6 @@
 from django.db import models
+from stdimage import StdImageField
+
 
 class Ong(models.Model):
     nome = models.CharField('Nome', max_length=60, help_text='Nome da ONG')
@@ -6,6 +8,7 @@ class Ong(models.Model):
     fone = models.CharField('Fone', max_length=15, help_text='Telefone da ONG')
     ramo = models.CharField('Ramo', max_length=100, help_text='Ramo de atuação da ONG')
     escala = models.CharField('Escala', max_length=10, help_text='Escala da ONG')
+    foto = StdImageField('Foto', upload_to='logos', delete_orphans=True, null=True, blank=True, help_text='Logotipo da ONG')
 
 
     class Meta:
