@@ -24,7 +24,17 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'index' %}">início</a>
                     </li>
-
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Desastres
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'desastre_adicionar' %}">Reportar Desastre</a></li>
+                            <li><a class="dropdown-item" href="#">Reportar Vítima</a></li>
+                            <li><a class="dropdown-item" href="{% url 'desastres' %}">Monitorar Desastres</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
@@ -32,6 +42,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'ong_adicionar' %}">Registrar ONG</a></li>
+                            <li><a class="dropdown-item" href="#">Registrar Agente</a></li>
                             <li><a class="dropdown-item" href="{% url 'ongs' %}">Listar ONGs</a></li>
                             <li>
                         </ul>
@@ -42,21 +53,23 @@
                             Abrigos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Registrar Abrigo</a></li>
-                            <li><a class="dropdown-item" href="#">Verificar Abrigos</a></li>
+                            <li><a class="dropdown-item" href="{% url 'abrigo_adicionar' %}">Registrar Abrigo</a></li>
+                            <li><a class="dropdown-item" href="{% url 'abrigos' %}">Verificar Abrigos</a></li>
                             <li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
-                            Desastres
+                            Financiamentos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Reportar Desastre</a></li>
-                            <li><a class="dropdown-item" href="#">Monitorar Desastres</a></li>
+                            <li><a class="dropdown-item" href="{% url 'financiamento_adicionar' %}">Faça sua Contribuição</a></li>
+                            <li><a class="dropdown-item" href="{% url 'financiamentos' %}">Listar Doações</a></li>
+                            <li>
                         </ul>
                     </li>
+
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
