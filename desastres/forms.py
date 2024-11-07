@@ -5,7 +5,7 @@ from .models import Desastre
 class DesastreModelForm(forms.ModelForm):
     class Meta:
         model = Desastre
-        fields = 'nome','tipo','data','local','populacao'
+        fields = 'nome','tipo','data','local','populacao','foto'
 
         error_messages = {
             'nome': {'required': 'O nome do Desastre é um campo obrigatório'},
@@ -13,4 +13,5 @@ class DesastreModelForm(forms.ModelForm):
             'data': {'required': 'A data do Desastre é um campo obrigatório'},
             'local': {'required': 'O local do Desastre é um campo obrigatório'},
             'populacao': {'required': 'A populacao do local é um campo obrigatório'},
+            'foto': {'required:': 'Imagem Obrigatória'},
         }

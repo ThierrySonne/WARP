@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from .forms import DesastreModelForm
 from .models import Desastre
@@ -29,5 +29,18 @@ class DesastreAddView(SuccessMessageMixin, CreateView):
     model = Desastre
     form_class = DesastreModelForm
     template_name = 'desastre_form.html'
-    success_url = reverse_lazy('Desastres')
+    success_url = reverse_lazy('desastres')
     success_message = 'Desastre Registado com Sucesso!'
+
+class DesastreUpdateView(SuccessMessageMixin, UpdateView):
+    model = Desastre
+    form_class = DesastreModelForm
+    template_name = 'desastre_form.html'
+    success_url = reverse_lazy('desastres')
+    success_message = 'Desastre alterado com sucesso!'
+
+class DesastreDeleteView(SuccessMessageMixin, DeleteView):
+    model = Desastre
+    template_name = 'desastre_apagar.html'
+    success_url = reverse_lazy('desastres')
+    success_message = 'Desastre excluído com sucesso!'
