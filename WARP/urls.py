@@ -26,4 +26,5 @@ urlpatterns = [
     path('',include('desastres.urls')),
     path('',include('financiamentos.urls')),
     path('',include('abrigos.urls')),
+    path('',include('agentes.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

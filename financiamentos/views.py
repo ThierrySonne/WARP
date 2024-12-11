@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from .forms import FinanciamentoModelForm
 from .models import Financimento
@@ -18,7 +18,7 @@ class FinanciamentosView(ListView):
             return qs.filter(nome__icontains=buscar)
 
         if qs.count() > 0:
-            paginator = Paginator(qs, 10)
+            paginator = Paginator(qs, 100)
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
         else:
@@ -29,5 +29,19 @@ class FinanciamentoAddView(SuccessMessageMixin, CreateView):
     model = Financimento
     form_class = FinanciamentoModelForm
     template_name = 'financiamento_form.html'
-    success_url = reverse_lazy('Financiamento')
+    success_url = reverse_lazy('financiamentos')
+    success_message = 'Financiamento Registado com Sucesso!'
+
+class FinanciamentoUpdateView(SuccessMessageMixin, UpdateView):
+    model = Financimento
+    form_class = FinanciamentoModelForm
+    template_name = 'financiamento_form.html'
+    success_url = reverse_lazy('financiamentos')
+    success_message = 'Financiamento Registado com Sucesso!'
+
+class FinanciamentoDeleteView(SuccessMessageMixin, DeleteView):
+    model = Financimento
+    form_class = FinanciamentoModelForm
+    template_name = 'financiamento_apagar.html'
+    success_url = reverse_lazy('financiamentos')
     success_message = 'Financiamento Registado com Sucesso!'

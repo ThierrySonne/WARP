@@ -19,7 +19,7 @@ class OngsView(ListView):
             return qs.filter(nome__icontains=buscar)
 
         if qs.count() > 0:
-            paginator = Paginator(qs, 1)
+            paginator = Paginator(qs, 100)
             listagem = paginator.get_page(self.request.GET.get('page'))
             return listagem
         else:
@@ -28,19 +28,19 @@ class OngsView(ListView):
 class OngAddView(SuccessMessageMixin, CreateView):
     model = Ong
     form_class = OngModelForm
-    template_name = 'Ong_form.html'
-    success_url = reverse_lazy('Ongs')
+    template_name = 'ong_form.html'
+    success_url = reverse_lazy('ongs')
     success_message = 'Ong cadastrada com sucesso!'
 
 class OngUpdateView(SuccessMessageMixin, UpdateView):
     model = Ong
     form_class = OngModelForm
-    template_name = 'Ong_form.html'
-    success_url = reverse_lazy('Ongs')
+    template_name = 'ong_form.html'
+    success_url = reverse_lazy('ongs')
     success_message = 'Ong atualizada com sucesso!'
 
 class OngDeleteView(SuccessMessageMixin, DeleteView):
     model = Ong
-    template_name = 'Ong_apagar.html'
-    success_url = reverse_lazy('Ongs')
+    template_name = 'ong_apagar.html'
+    success_url = reverse_lazy('ongs')
     success_message = 'Ong apagada com sucesso!'
