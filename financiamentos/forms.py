@@ -5,9 +5,10 @@ from .models import Financimento
 class FinanciamentoModelForm(forms.ModelForm):
     class Meta:
         model = Financimento
-        fields = 'tipo','quantidade'
+        fields = 'nome','tipo','quantidade'
 
         error_messages = {
-            'nome': {'required': 'O tipo de Financiamento é um campo obrigatório'},
-            'cpf': {'required': 'A quantia a ser doada é um campo obrigatório'},
+            'nome': {'required': 'O ID do Financiamento é um campo obrigatório'},
+            'tipo': {'required': 'O tipo de Financiamento é um campo obrigatório'},
+            'quantidade': {'required': 'A quantia a ser doada é um campo obrigatório'},
         }

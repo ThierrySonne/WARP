@@ -41,7 +41,6 @@ class FinanciamentoUpdateView(SuccessMessageMixin, UpdateView):
 
 class FinanciamentoDeleteView(SuccessMessageMixin, DeleteView):
     model = Financimento
-    form_class = FinanciamentoModelForm
     template_name = 'financiamento_apagar.html'
     success_url = reverse_lazy('financiamentos')
-    success_message = 'Financiamento Registado com Sucesso!'
+    success_message = 'Financiamento Apagado com Sucesso!'

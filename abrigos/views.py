@@ -41,7 +41,6 @@ class AbrigoUpdateView(SuccessMessageMixin, UpdateView):
 
 class AbrigoDeleteView(SuccessMessageMixin, DeleteView):
     model = Abrigo
-    form_class = AbrigoModelForm
     template_name = 'abrigo_apagar.html'
     success_url = reverse_lazy('abrigos')
     success_message = 'Abrigo apagado com Sucesso!'

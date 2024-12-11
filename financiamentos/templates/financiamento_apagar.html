@@ -5,13 +5,15 @@
         <div class="card-body">
             <div class="row">
                 <h3 class="text-center">Dados da Doação</h3>
+                <p class="p-2 mt-2"><strong>ID: </strong>{{ object.nome }}</p>
                 <p class="p-2 mt-2"><strong>Tipo: </strong>{{ object.tipo }}</p>
                 <p class="p-2 mt-2"><strong>Quantidade: </strong>{{ object.quantidade }}</p>
+                <p class="p-2 mt-2">Confirma a exclusão da doação: <strong>{{ object }}</strong>?</p>
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
 
                     <div class="text-end">
-                        {% bootstrap_button button_type="submit" content="Sim"%}
+                        {% bootstrap_button button_type="submit" content="Sim" %}
                         <a href="{% url 'financiamentos' %}" class="btn btn-secondary text-white" type="button">
                            <span class="text">Cancelar</span>
                         </a>

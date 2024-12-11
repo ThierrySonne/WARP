@@ -90,7 +90,20 @@
 <main>
   <div class="album py-5 bg-body-tertiary">
     <div class="container">
-
+        <form action="" method="GET">
+                <div class="form-group row p-3">
+                    <label class="col-sm-2 col-form-label">Procure uma ONG: </label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" name="buscar" value="{{ request.GET.buscar }}"
+                               placeholder="Digite o nome da ONG: ">
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-warning">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+            </form>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           {% if object_list %}
               {% for ongs in object_list %}
@@ -109,12 +122,12 @@
                                 <div class="btn-group">
                                         <a href="{% url 'ong_editar' ongs.pk %}">
                                             <button type="button" class="btn btn-sm btn-warning">
-                                                Saiba Mais
+                                                Atualizar
                                             </button>
                                         </a>
                                     <a href="{% url 'ong_apagar' ongs.pk %}">
                                     <button type="button" class="btn btn-sm btn-secondary">
-                                        Atualizações
+                                        Remover
                                     </button>
                                     </a>
                                 </div>
