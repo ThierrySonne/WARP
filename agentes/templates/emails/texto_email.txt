@@ -1,0 +1,3 @@
+Olá {{ agente }} !
+
+Informamos que seu alistamento na ONG {{ ong }} foi aceito !

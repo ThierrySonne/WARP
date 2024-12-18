@@ -1,0 +1,21 @@
+{% extends 'principal.html' %}
+{% load django_bootstrap5 %}
+{% block content%}
+    <div class="card shadow m-3 col-md-6 mx-auto bg-secondary">
+        <div class="card-body bg-secondary">
+            <div class="row">
+                <h3 class="text-center">Cadastro de operacoes</h3>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <div class="text-end">
+                        {% bootstrap_button button_type="submit" content="Salvar" %}
+                        <a href="{% url 'operacoes' %}" class="btn btn-secondary text-white" type="button">
+                           <span class="text">Cancelar</span>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

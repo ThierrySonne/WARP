@@ -12,6 +12,6 @@ class DesastreModelForm(forms.ModelForm):
             'tipo': {'required': 'O tipo do Desastre é um campo obrigatório'},
             'data': {'required': 'A data do Desastre é um campo obrigatório'},
             'local': {'required': 'O local do Desastre é um campo obrigatório'},
-            'populacao': {'required': 'A populacao do local é um campo obrigatório'},
+            'populacao': {'required': 'A quantidade de Vítimas é um campo obrigatório'},
             'foto': {'required:': 'Imagem Obrigatória'},
         }

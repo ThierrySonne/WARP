@@ -1,0 +1,74 @@
+{% extends 'principal.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% block content%}
+    <section class="section">
+        <div class="container">
+            <form action="" method="GET">
+                <div class="form-group row p-3">
+                    <div class="col-sm-5">
+                        {% bootstrap_field form.desastre layout='horizontal' %}
+                    </div>
+                    <div class="col-sm-5">
+                        {% bootstrap_field form.ong layout='horizontal' %}
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-primary">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+            </form>
+            {% if object_list %}
+                <div class="card-body ">
+                    <h3 class="text-center">Operações Cadastradas</h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-success">
+                                <th>Nome</th>
+                                <th>Desastre</th>
+                                <th>ONG</th>
+                                <th style="width: 100px; text-align: center">Ações</th>
+                            </thead>
+                            <tbody class="bg-white">
+                                {% for operacoes in object_list %}
+                                    <tr>
+                                        <td> {{ operacoes.operacao }} </td>
+                                        <td> {{ operacoes.desastre }} </td>
+                                        <td> {{ operacoes.ong }} </td>
+
+                                        <td style="text-align: center">
+                                                <a href="">
+                                                    <span class="icon">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </span>
+                                                </a>
+                                                <a href="{% url 'operacoes_editar' operacoes.pk %}">
+                                                    <button class="icon">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </a>
+                                                <a href="{% url 'operacoes_apagar' operacoes.pk %}">
+                                                    <span class="icon">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </span>
+                                                </a>
+                                                <a href="">
+                                                    <span class="icon">
+                                                        <i class="fas fa-check-circle"></i>
+                                                    </span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        {% bootstrap_pagination object_list url="/operacoes?page=1" size="sm" %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

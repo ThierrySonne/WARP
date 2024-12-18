@@ -7,7 +7,7 @@ class Desastre(models.Model):
     tipo = models.CharField('Tipo',max_length=60)
     data = models.CharField('Data',max_length=20)
     local = models.CharField('Local',max_length=100)
-    populacao = models.CharField('População',max_length=10)
+    populacao = models.CharField('Vítimas',max_length=10)
     foto = StdImageField('Foto', upload_to='desastres', delete_orphans=True, null=True, blank=True)
 
 

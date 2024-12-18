@@ -108,16 +108,16 @@
           {% if object_list %}
               {% for desastre in object_list %}
                 <div class="col">
-                    <div class="card shadow-sm bg-dark">
+                    <div class="card shadow-sm bg-secondary ">
                         {% if desastre.foto.url is not empty %}
                         <img src="{{ desastre.foto.url }}" height="225" width="100%">
                         {% endif %}
                         <div class="card-body">
-                        <p class="card-text text-white "><strong>Nome: </strong>{{ desastre.nome }}</p>
-                        <p class="card-text text-white "><strong>Tipo: </strong>{{ desastre.tipo }}</p>
-                        <p class="card-text text-white "><strong>Data: </strong>{{ desastre.data }}</p>
-                        <p class="card-text text-white "><strong>Local: </strong>{{ desastre.local }}</p>
-                        <p class="card-text text-white "><strong>Vítimas: </strong>{{ desastre.populacao }}</p>
+                        <p class="card-text  "><strong>Nome: </strong>{{ desastre.nome }}</p>
+                        <p class="card-text  "><strong>Tipo: </strong>{{ desastre.tipo }}</p>
+                        <p class="card-text  "><strong>Data: </strong>{{ desastre.data }}</p>
+                        <p class="card-text  "><strong>Local: </strong>{{ desastre.local }}</p>
+                        <p class="card-text  "><strong>Vítimas: </strong>{{ desastre.populacao }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                         <a href="{% url 'desastre_editar' desastre.pk %}">
@@ -126,7 +126,7 @@
                                             </button>
                                         </a>
                                     <a href="{% url 'desastre_apagar' desastre.pk %}">
-                                    <button type="button" class="btn btn-sm btn-secondary">
+                                    <button type="button" class="btn btn-sm btn-dark">
                                         Remover
                                     </button>
                                     </a>
