@@ -31,12 +31,32 @@ class AgentesView(ListView):
             return messages.info(self.request, 'Não existem Agentes cadastrados!')
 
 
-    def enviar_email(self, agente):
-        email =[]
-        email.append(agente.email)
 
-        dados = {'agente': agente.nome,
-                 'ong': agente.ong, }
+
+class AgenteAddView(SuccessMessageMixin, CreateView):
+    model = Agente
+    form_class = AgenteModelForm
+    template_name = 'Agente_form.html'
+    success_url = reverse_lazy('agentes')
+    success_message = 'Agente cadastrado com sucesso!'
+
+    def form_valid(self, form):
+        nome = form.cleaned_data.get('nome')
+        email = form.cleaned_data.get('email')
+        ong = form.cleaned_data.get('ong')
+        self.enviar_email(nome,ong,email)
+
+        return super(AgenteAddView, self).form_valid(form)
+
+
+
+    def enviar_email(self, nome, ong, email_agente):
+        email =[]
+        email.append(email_agente)
+
+        dados = {'nome': nome,
+                 'ong': ong,
+                 'email': email,}
 
         texto_email = render_to_string('emails/texto_email.txt', dados)
         html_email = render_to_string('emails/texto_email.html', dados)
@@ -47,15 +67,7 @@ class AgentesView(ListView):
                   html_message=html_email,
                   fail_silently=False,
                   )
-        self.enviar_email(agente)
         return redirect('agentes')
-
-class AgenteAddView(SuccessMessageMixin, CreateView):
-    model = Agente
-    form_class = AgenteModelForm
-    template_name = 'Agente_form.html'
-    success_url = reverse_lazy('agentes')
-    success_message = 'Agente cadastrado com sucesso!'
 
 class AgenteUpdateView(SuccessMessageMixin, UpdateView):
     model = Agente

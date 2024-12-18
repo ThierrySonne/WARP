@@ -63,7 +63,6 @@ class OperacoesUpdateView( SuccessMessageMixin, UpdateView):
 
 class OperacoesDeleteView( SuccessMessageMixin, DeleteView):
     model = Operacoes
-    form_class = OperacoesModelForm
     template_name = 'operacoes_apagar.html'
     success_url = reverse_lazy('operacoes')
     success_message = 'Operacoes excluído com sucesso!'
