@@ -1,14 +1,17 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from .forms import FinanciamentoModelForm
-from .models import Financimento
+from .models import Financiamento
 
-class FinanciamentosView(ListView):
-    model = Financimento
+class FinanciamentosView(PermissionRequiredMixin, ListView):
+    permission_required = 'financiamentos.view_financiamento'
+    permission_denied_message = 'Vizualizar Financiamentos'
+    model = Financiamento
     template_name = 'financiamentos.html'
 
     def get_queryset(self):
@@ -25,22 +28,28 @@ class FinanciamentosView(ListView):
             return messages.info(self.request,'Não existem Financiamentos')
 
 
-class FinanciamentoAddView(SuccessMessageMixin, CreateView):
-    model = Financimento
+class FinanciamentoAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
+    permission_required = 'financiamentos.add_financiamento'
+    permission_denied_message = 'Adicionar Financiamentos'
+    model = Financiamento
     form_class = FinanciamentoModelForm
     template_name = 'financiamento_form.html'
     success_url = reverse_lazy('financiamentos')
     success_message = 'Financiamento Registado com Sucesso!'
 
-class FinanciamentoUpdateView(SuccessMessageMixin, UpdateView):
-    model = Financimento
+class FinanciamentoUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
+    permission_required = 'financiamentos.change_financiamento'
+    permission_denied_message = 'Editar Financiamentos'
+    model = Financiamento
     form_class = FinanciamentoModelForm
     template_name = 'financiamento_form.html'
     success_url = reverse_lazy('financiamentos')
     success_message = 'Financiamento Registado com Sucesso!'
 
-class FinanciamentoDeleteView(SuccessMessageMixin, DeleteView):
-    model = Financimento
+class FinanciamentoDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
+    permission_required = 'financiamentos.delete_financiamento'
+    permission_denied_message = 'Deletar Financiamentos'
+    model = Financiamento
     template_name = 'financiamento_apagar.html'
     success_url = reverse_lazy('financiamentos')
     success_message = 'Financiamento Apagado com Sucesso!'

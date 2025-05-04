@@ -1,10 +1,10 @@
 from django import forms
 
-from .models import Financimento
+from .models import Financiamento
 
 class FinanciamentoModelForm(forms.ModelForm):
     class Meta:
-        model = Financimento
+        model = Financiamento
         fields = 'nome','tipo','quantidade'
 
         error_messages = {

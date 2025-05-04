@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
@@ -13,7 +14,9 @@ from .forms import AgenteModelForm, AgenteMissaoInLine
 from .models import Agente
 
 
-class AgentesView(ListView):
+class AgentesView(PermissionRequiredMixin, ListView):
+    permission_required = 'agentes.view_agente'
+    permission_denied_message = 'Vizualizar Agentes'
     model = Agente
     template_name = 'agentes.html'
 
@@ -33,7 +36,9 @@ class AgentesView(ListView):
 
 
 
-class AgenteAddView(SuccessMessageMixin, CreateView):
+class AgenteAddView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
+    permission_required = 'agentes.add_agente'
+    permission_denied_message = 'Adicionar Agentes'
     model = Agente
     form_class = AgenteModelForm
     template_name = 'Agente_form.html'
@@ -69,14 +74,18 @@ class AgenteAddView(SuccessMessageMixin, CreateView):
                   )
         return redirect('agentes')
 
-class AgenteUpdateView(SuccessMessageMixin, UpdateView):
+class AgenteUpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
+    permission_required = 'agentes.change_agente'
+    permission_denied_message = 'Editar Agentes'
     model = Agente
     form_class = AgenteModelForm
     template_name = 'Agente_form.html'
     success_url = reverse_lazy('agentes')
     success_message = 'Agente atualizado com sucesso!'
 
-class AgenteDeleteView(SuccessMessageMixin, DeleteView):
+class AgenteDeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
+    permission_required = 'agentes.delete_agente'
+    permission_denied_message = 'Eliminar Agentes'
     model = Agente
     template_name = 'Agente_apagar.html'
     success_url = reverse_lazy('agentes')

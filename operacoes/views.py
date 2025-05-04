@@ -1,4 +1,4 @@
-
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.mail import send_mail
 from django.core.paginator import Paginator
@@ -13,7 +13,8 @@ from operacoes.forms import OperacoesListForm, OperacoesModelForm
 from operacoes.models import Operacoes
 
 
-class OperacoesView( ListView):
+class OperacoesView(PermissionRequiredMixin, ListView):
+    permission_required = 'operacoes.view_operacoes'
     permission_denied_message = 'Vizualizar Operacoes'
     model = Operacoes
     template_name = 'operacoes.html'
@@ -47,21 +48,27 @@ class OperacoesView( ListView):
 
 
 
-class OperacoesAddView( SuccessMessageMixin, CreateView):
+class OperacoesAddView( PermissionRequiredMixin, SuccessMessageMixin, CreateView):
+    permission_required = 'operacoes.add_operacoes'
+    permission_denied_message = 'Adicionar Operacoes'
     model = Operacoes
     form_class = OperacoesModelForm
     template_name = 'operacoes_form.html'
     success_url = reverse_lazy('operacoes')
     success_message = 'Operacoes cadastrado com sucesso!'
 
-class OperacoesUpdateView( SuccessMessageMixin, UpdateView):
+class OperacoesUpdateView( PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
+    permission_required = 'operacoes.change_operacoes'
+    permission_denied_message = 'Editar Operacoes'
     model = Operacoes
     form_class = OperacoesModelForm
     template_name = 'operacoes_form.html'
     success_url = reverse_lazy('operacoes')
     success_message = 'Operacoes alterado com sucesso!'
 
-class OperacoesDeleteView( SuccessMessageMixin, DeleteView):
+class OperacoesDeleteView( PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
+    permission_required = 'operacoes.delete_operacoes'
+    permission_denied_message = 'Eliminar Operacoes'
     model = Operacoes
     template_name = 'operacoes_apagar.html'
     success_url = reverse_lazy('operacoes')
